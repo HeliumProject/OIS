@@ -152,7 +152,17 @@ BOOL CALLBACK Win32InputManager::_DIEnumDevCallback(LPCDIDEVICEINSTANCE lpddi, L
 		jsInfo.isXInput = false;
 		jsInfo.productGuid = lpddi->guidProduct;
 		jsInfo.deviceID = lpddi->guidInstance;
-		jsInfo.vendor = lpddi->tszInstanceName;
+#if UNICODE
+        //convert from wide char to narrow char array
+        char ch[260];
+        char pDefaultChar = ' ';
+        WideCharToMultiByte(CP_ACP,0,lpddi->tszInstanceName,-1, ch,260,&pDefaultChar, NULL);
+    
+        //A std:string  using the char* constructor.
+        std::string ss(ch);
+#else
+        jsInfo.vendor = lpddi->tszInstanceName;
+#endif
 		jsInfo.devId = _this_->joySticks;
 
 		_this_->joySticks++;
