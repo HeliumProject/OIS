@@ -91,7 +91,7 @@ void MacInputManager::_parseConfigSettings( ParamList &paramList )
 	{
 		// else get the main active window.. user might not have access to it through some
 		// graphics libraries, if that fails then try at the application level.
-		mWindow = ActiveNonFloatingWindow();
+		mWindow = NULL;//ActiveNonFloatingWindow(); // carbon
 		if(mWindow == NULL)
 		{
 			mEventTargetRef = GetApplicationEventTarget();

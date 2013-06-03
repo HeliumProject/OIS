@@ -202,7 +202,7 @@ void MacKeyboard::_keyDownCallback( EventRef theEvent )
 	if (mTextMode == Unicode)
 	{
 		//get string size
-		UInt32 stringsize;
+		ByteCount stringsize;
 		//status = GetEventParameter( theEvent, 'kuni', typeUnicodeText, NULL, 0, &stringsize, NULL);
 		//status = GetEventParameter( theEvent, 'kuni', typeUnicodeText, NULL, sizeof(UniChar)*10, NULL, &text );
 		status = GetEventParameter( theEvent, 'kuni', typeUnicodeText, NULL, sizeof(UniChar) * 10, &stringsize, &text );
